@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  smart-city-core module POM.
+
+  Contains the shared business layer used by BOTH the GUI and the Web module:
+    - models (Person, Citizen, Complaint, CityService, Feedback)
+    - interfaces (repository contracts)
+    - custom exceptions
+    - JDBC DAOs (try-with-resources, PreparedStatement, transactions)
+    - service layer (validation + business rules)
+    - concurrency package (thread-safe complaint processor)
+    - security (BCrypt password hashing)
+    - config (DatabaseConfig loaded from env vars)
+
+  Tests run against H2 in MySQL compatibility mode, so they do NOT require
+  a running MySQL instance. Production runtime still uses MySQL Connector/J.
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.smartcity</groupId>
+        <artifactId>smart-city-parent</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <artifactId>smart-city-core</artifactId>
+    <packaging>jar</packaging>
+    <name>Smart City - Core</name>
+    <description>Shared business layer: models, DAOs, services, concurrency, security.</description>
+
+    <dependencies>
+        <!-- BCrypt password hashing -->
+        <dependency>
+            <groupId>at.favre.lib</groupId>
+            <artifactId>bcrypt</artifactId>
+        </dependency>
+
+        <!-- MySQL JDBC driver (shaded into the runtime JAR) -->
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+        </dependency>
+
+        <!-- Jakarta Servlet API is "provided" here so the security/config helpers
+             that need HttpServletRequest (none currently) won't fail compilation.
+             Kept optional for future use. -->
+        <dependency>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- Test: H2 in MySQL compatibility mode + JUnit 5 + AssertJ + Mockito -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <systemPropertyVariables>
+                        <!-- Default test DB URL: H2 in MySQL mode, in-memory. Override
+                             via -Dtest.db.url=... to point at a real MySQL. -->
+                        <test.db.url>jdbc:h2:mem:smart_city_test;MODE=MySQL;DB_CLOSE_DELAY=-1;DATABASE_TO_LOWER=TRUE</test.db.url>
+                        <test.db.user>sa</test.db.user>
+                        <test.db.password></test.db.password>
+                    </systemPropertyVariables>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

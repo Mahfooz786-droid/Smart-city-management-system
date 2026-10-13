@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  smart-city-web module POM.
+
+  Jakarta Servlet 6 + JSP 3.1 web application. Depends on smart-city-core
+  for all business logic. The Servlet API is marked "provided" because
+  Tomcat 10.1 supplies it at runtime.
+
+  Output: deployable WAR (smart-city-web.war) that drops into Tomcat's
+  webapps/ directory.
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.smartcity</groupId>
+        <artifactId>smart-city-parent</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <artifactId>smart-city-web</artifactId>
+    <packaging>war</packaging>
+    <name>Smart City - Web</name>
+    <description>Jakarta Servlet 6 + JSP web UI on top of smart-city-core.</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.smartcity</groupId>
+            <artifactId>smart-city-core</artifactId>
+        </dependency>
+
+        <!-- Servlet API is provided by Tomcat 10.1 at runtime -->
+        <dependency>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.servlet.jsp</groupId>
+            <artifactId>jakarta.servlet.jsp-api</artifactId>
+        </dependency>
+
+        <!-- JSTL for safe JSP output (c:out escaping) -->
+        <dependency>
+            <groupId>jakarta.servlet.jsp.jstl</groupId>
+            <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.web</groupId>
+            <artifactId>jakarta.servlet.jsp.jstl</artifactId>
+        </dependency>
+
+        <!-- Tests -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>smart-city-web</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

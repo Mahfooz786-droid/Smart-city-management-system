@@ -1,0 +1,81 @@
+# ============================================================================
+# Smart City Management System - .gitignore
+# Covers: Java, Maven, IDE files, build outputs, env files, secrets
+# ============================================================================
+
+# ---- Maven build outputs ----
+target/
+!.mvn/wrapper/maven-wrapper.jar
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.properties
+
+# ---- Maven shade intermediate ----
+original-*.jar
+dependency-reduced-pom.xml
+*.jar.original
+*.war.original
+
+# ---- IDE: IntelliJ IDEA ----
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# ---- IDE: Eclipse / Spring STS ----
+.classpath
+.project
+.settings/
+.factorypath
+.springBeans
+.sts4-cache/
+
+# ---- IDE: VS Code ----
+.vscode/
+*.code-workspace
+
+# ---- IDE: NetBeans ----
+nbproject/
+nbactions.xml
+nb-configuration.xml
+
+# ---- Java runtime / build artifacts ----
+*.class
+hs_err_pid*
+replay_pid*
+
+# ---- OS-level junk ----
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---- Logs ----
+*.log
+logs/
+
+# ---- Env files & secrets ----
+.env
+.env.local
+.env.*.local
+*.env
+secrets/
+**/application-*.properties
+**/application-*.yml
+
+# ---- Database ----
+*.db
+*.h2.db
+*.lock.db
+*.mv.db
+*.trace.db
+db/
+
+# ---- Misc archives ----
+*.tar
+*.tar.gz
+*.zip
+*.tgz
+
+# ---- Keep SQL scripts ----
+!database/*.sql
+!**/resources/com/smartcity/*.sql

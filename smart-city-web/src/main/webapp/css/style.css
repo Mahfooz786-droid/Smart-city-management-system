@@ -1,0 +1,115 @@
+/* ============================================================================
+   Smart City Management System - Web module CSS
+   Same palette as the Java Swing GUI: navy / teal / coral / amber.
+   ============================================================================ */
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; font-family: 'Segoe UI', -apple-system, sans-serif; background: #F4F6F9; color: #1E293B; }
+
+:root {
+    --navy-dark: #0F1B2D; --navy-mid: #182742; --bg: #F4F6F9; --card: #FFFFFF;
+    --accent: #14B8A6; --accent-dark: #0D9486; --coral: #FF6B6B; --amber: #F59E0B;
+    --text-muted: #64748B; --text: #1E293B; --border: #E2E8F0;
+}
+
+/* ====================== Login split layout ====================== */
+.split { display: flex; min-height: 100vh; }
+.split .hero { flex: 1; padding: 60px; display: flex; flex-direction: column; justify-content: center; color: white; }
+.split .hero.navy { background: linear-gradient(160deg, var(--navy-dark) 0%, var(--navy-mid) 100%); }
+.split .hero .brand { font-weight: bold; margin-bottom: 40px; }
+.split .hero .brand.teal { color: var(--accent); }
+.split .hero .brand.coral { color: var(--coral); }
+.split .hero h1 { font-size: 36px; line-height: 1.2; margin: 0 0 24px 0; }
+.split .hero p { color: #CBD5E1; max-width: 480px; line-height: 1.6; }
+
+.split .form-panel { flex: 1; padding: 60px; background: var(--card); display: flex; flex-direction: column; justify-content: center; }
+.split .form-panel h2 { font-size: 26px; margin: 0 0 6px 0; }
+.split .form-panel h3 { font-size: 14px; color: var(--text-muted); font-weight: normal; margin: 0 0 32px 0; }
+.login-form { display: flex; flex-direction: column; gap: 14px; max-width: 360px; }
+.login-form label { font-size: 11px; color: var(--text-muted); font-weight: 600; letter-spacing: 0.5px; }
+.login-form input, .login-form select {
+    padding: 12px 14px; border: 1px solid var(--border); border-radius: 12px;
+    font-size: 14px; outline: none; margin-top: 4px;
+}
+.login-form input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.2); }
+.role-toggle { display: flex; gap: 16px; margin-bottom: 6px; }
+.role-toggle label { font-size: 13px; color: var(--text); display: flex; align-items: center; gap: 6px; font-weight: normal; cursor: pointer; }
+.role-toggle input { margin: 0; }
+.hint { font-size: 11px; color: var(--text-muted); margin-top: 8px; }
+
+/* ====================== Buttons ====================== */
+.btn-primary, .btn-secondary {
+    padding: 10px 18px; border-radius: 12px; font-weight: bold; font-size: 14px;
+    cursor: pointer; border: none; transition: all 0.15s;
+}
+.btn-primary { background: var(--accent); color: white; }
+.btn-primary:hover { filter: brightness(1.1); }
+.btn-secondary { background: var(--card); color: var(--text); border: 1px solid var(--border); }
+.btn-secondary:hover { background: #F8FAFC; }
+
+/* ====================== Sidebar layout ====================== */
+.layout { display: flex; min-height: 100vh; }
+.sidebar { width: 240px; padding: 24px 16px; color: white; display: flex; flex-direction: column; }
+.sidebar.navy { background: linear-gradient(180deg, var(--navy-dark) 0%, var(--navy-mid) 100%); }
+.sidebar .brand { font-size: 14px; font-weight: bold; padding: 8px 16px 24px 16px; }
+.sidebar .brand.teal { color: var(--accent); }
+.sidebar .brand.coral { color: var(--coral); }
+.sidebar nav { display: flex; flex-direction: column; gap: 4px; flex: 1; }
+.sidebar nav a, .sidebar nav form { padding: 10px 14px; color: #CBD5E1; text-decoration: none; font-size: 14px; border-radius: 8px; transition: background 0.15s; }
+.sidebar nav a:hover { background: rgba(255,255,255,0.08); color: white; }
+.sidebar nav a.active { background: rgba(255,255,255,0.12); color: white; font-weight: 600; }
+.nav-logout { background: transparent; color: #CBD5E1; border: none; padding: 10px 14px; text-align: left; cursor: pointer; font-size: 14px; border-radius: 8px; width: 100%; }
+.nav-logout:hover { background: rgba(255,255,255,0.08); color: white; }
+.sidebar .user-badge { padding: 16px; font-size: 12px; color: #CBD5E1; border-top: 1px solid rgba(255,255,255,0.1); }
+
+main { flex: 1; padding: 32px; }
+main h1 { font-size: 26px; margin: 0 0 4px 0; }
+main p.muted { color: var(--text-muted); font-size: 13px; margin: 0 0 24px 0; }
+
+/* ====================== Cards & Tables ====================== */
+.card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; margin-bottom: 24px; }
+.card h2 { margin: 0 0 16px 0; font-size: 18px; }
+.card-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+.grid-form { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.grid-form label { display: flex; flex-direction: column; font-size: 12px; color: var(--text-muted); font-weight: 600; gap: 6px; }
+.grid-form .span2 { grid-column: span 2; }
+.grid-form input, .grid-form textarea, .grid-form select {
+    padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 14px;
+    font-family: inherit;
+}
+.grid-form input:focus, .grid-form textarea:focus, .grid-form select:focus {
+    outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.2);
+}
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+thead { background: #F1F5F9; }
+thead th { text-align: left; padding: 12px 16px; font-weight: bold; color: var(--text); }
+tbody tr { border-top: 1px solid var(--border); }
+tbody tr:hover { background: rgba(20, 184, 166, 0.06); }
+td { padding: 12px 16px; }
+
+/* ====================== Pills ====================== */
+.status-pill, .rating-pill { padding: 4px 10px; border-radius: 999px; font-size: 11px; font-weight: bold; }
+.status-pill { background: rgba(245, 158, 11, 0.18); color: var(--amber); }
+.status-pill.In-Progress { background: rgba(20, 184, 166, 0.18); color: var(--accent-dark); }
+.status-pill.Resolved { background: rgba(34, 197, 94, 0.18); color: #15803D; }
+.rating-pill { background: var(--amber); color: white; }
+
+/* ====================== Services grid ====================== */
+.services-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.service-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 20px; }
+.service-name { font-size: 16px; font-weight: bold; }
+.service-dept { font-size: 12px; color: var(--text-muted); margin: 4px 0 8px; }
+.service-desc { font-size: 14px; color: var(--text-muted); line-height: 1.5; }
+.service-status { margin-top: 12px; display: inline-block; padding: 4px 10px; border-radius: 999px; font-size: 11px; font-weight: bold; }
+.status-Active { background: rgba(20, 184, 166, 0.18); color: var(--accent-dark); }
+.status-Maintenance { background: rgba(245, 158, 11, 0.18); color: var(--amber); }
+
+/* ====================== Error pages ====================== */
+.error-box { background: rgba(255, 107, 107, 0.12); color: var(--coral); border-left: 3px solid var(--coral); padding: 12px 16px; border-radius: 8px; margin: 12px 0; font-size: 13px; }
+.error-page { max-width: 480px; margin: 80px auto; text-align: center; }
+.error-page h1 { margin-bottom: 16px; }
+.error-page .btn-primary { text-decoration: none; display: inline-block; margin-top: 16px; }
+
+/* ====================== Inline forms in tables ====================== */
+td form { display: flex; gap: 8px; align-items: center; }
+td form select { padding: 6px 8px; font-size: 12px; border: 1px solid var(--border); border-radius: 6px; }
